@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!-- Layout to be used by ArrayAdapter. -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
     android:orientation="vertical">
+
+    <!--Shows a picture.-->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:paddingRight="@dimen/list_item_icon_text_padding" />
 
     <!-- Shows Miwok words. -->
     <TextView
@@ -14,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:layout_toRightOf="@id/imageView"
         tools:text="lutti"/>
 
     <!-- Shows English equivalent of the Miwok word. -->
@@ -22,5 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:layout_toRightOf="@id/imageView"
+        android:layout_below="@id/miwok_text_view"
         tools:text="one"/>
-</LinearLayout>
+</RelativeLayout>

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -61,6 +62,24 @@ public class WordAdapter extends ArrayAdapter<Word> {
         // we use Word type return value as the current class declaration
         // (public class WordAdapter extends ArrayAdapter<Word>) expects Word type input as well
         Word currentWord = getItem(position); // getItem() method from ArrayAdapter class, gets index
+
+        // Find the ImageView in the list_item.xml layout for the associated picture
+        ImageView imageView = (ImageView) listItemView.findViewById(R.id.imageView);
+        // Get the drawable image resource ID from the current Word object and set it as source for
+        // the ImageView if needed
+        if(currentWord.hasImage()){
+            imageView.setVisibility(View.VISIBLE);
+            imageView.setImageResource(currentWord.getImageResourceId());
+        } else {
+            imageView.setVisibility(View.GONE);
+        }
+        
+//        if (currentWord.getConstructorType() == 1){
+//            imageView.setVisibility(View.VISIBLE);
+//            imageView.setImageResource(currentWord.getImageResourceId());
+//        } else {
+//            imageView.setVisibility(View.GONE);
+//        }
 
         // Find the TextView in the list_item.xml layout for the miwok word
         TextView miwokTextView = (TextView) listItemView.findViewById(R.id.miwok_text_view);
