@@ -43,10 +43,10 @@
         android:background="@color/category_phrases"
         android:text="@string/category_phrases" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="subjects"
-        android:onClick="toTestView"/>
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="subjects"-->
+        <!--android:onClick="toTestView"/>-->
 
 </LinearLayout>

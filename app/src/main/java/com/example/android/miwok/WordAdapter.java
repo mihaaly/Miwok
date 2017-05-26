@@ -3,6 +3,7 @@ package com.example.android.miwok;
 import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,9 @@ import java.util.ArrayList;
 
 public class WordAdapter extends ArrayAdapter<Word> {
 
+    // storing color Resource id
+    private int mColorResourceId;
+
     // Constructor
     /**
      * This is our own custom constructor (it doesn't mirror a superclass constructor).
@@ -27,8 +31,9 @@ public class WordAdapter extends ArrayAdapter<Word> {
      *
      * @param context        The current context. Used to inflate the layout file.
      * @param words A List of Word.java objects to display in a list
+     * @param colorResourceId is the resource ID for the background color for this list of words
      */
-    public WordAdapter(Activity context, ArrayList<Word> words){
+    public WordAdapter(Activity context, ArrayList<Word> words, int colorResourceId){
         // Here, we initialize the ArrayAdapter's internal storage for the context and the list.
         // the second argument is used when the ArrayAdapter is populating a single TextView.
         // Because this is a custom adapter for two TextViews and an ImageView, the adapter
@@ -37,6 +42,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
         // Here, we used 0.
         // Instead the modified getView() will inflate the Views, see below...(R.layout.list_item)
         super(context, 0, words); // calls the super-class's constructor (i.e. ArrayAdapter's)
+        mColorResourceId = colorResourceId;
     }
 
 
@@ -73,7 +79,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
         } else {
             imageView.setVisibility(View.GONE);
         }
-        
+
 //        if (currentWord.getConstructorType() == 1){
 //            imageView.setVisibility(View.VISIBLE);
 //            imageView.setImageResource(currentWord.getImageResourceId());
@@ -90,6 +96,13 @@ public class WordAdapter extends ArrayAdapter<Word> {
         TextView defaultTextView = (TextView) listItemView.findViewById(R.id.default_text_view);
         // Get the english word from the current Word object and set it on the defaultTextView
         defaultTextView.setText(currentWord.getDefaultTranslation()); // getDefaultTranslation() defined in Word.java
+
+        // Set the theme color for the list item
+        View textContainer = listItemView.findViewById(R.id.wordsView);
+        // Find the color that the resource ID maps to
+        int color = ContextCompat.getColor(getContext(), mColorResourceId);
+        // Set the background color of the text container View
+        textContainer.setBackgroundColor(color);
 
         // Return the whole list item layout (listItemView) (containing 2 TextViews) so that
         // it can be shown in the ListView (word_list.xml   // listItemView will be added as a child to the AdapterView (i.e. now ListView)
