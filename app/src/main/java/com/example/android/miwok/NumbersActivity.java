@@ -1,12 +1,17 @@
 package com.example.android.miwok;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
 public class NumbersActivity extends AppCompatActivity {
+
+    private MediaPlayer mMediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,18 +19,18 @@ public class NumbersActivity extends AppCompatActivity {
         setContentView(R.layout.word_list);
 
         // ArrayList of Word.java objects
-        ArrayList<Word> words = new ArrayList<Word>();
+        final ArrayList<Word> words = new ArrayList<Word>();
         // Add Word objects to the ArrayList
-        words.add(new Word(R.drawable.number_one, "lutti", "one"));
-        words.add(new Word(R.drawable.number_two, "otiiko", "two"));
-        words.add(new Word(R.drawable.number_three, "tolookosu", "three"));
-        words.add(new Word(R.drawable.number_four, "oyyisa", "four"));
-        words.add(new Word(R.drawable.number_five, "massokka", "five"));
-        words.add(new Word(R.drawable.number_six, "temmokka", "six"));
-        words.add(new Word(R.drawable.number_seven, "kenekaku", "seven"));
-        words.add(new Word(R.drawable.number_eight, "kawinta", "eight"));
-        words.add(new Word(R.drawable.number_nine, "wo'e", "nine"));
-        words.add(new Word(R.drawable.number_ten, "na'aacha", "ten"));
+        words.add(new Word(R.drawable.number_one, "lutti", "one", R.raw.number_one));
+        words.add(new Word(R.drawable.number_two, "otiiko", "two", R.raw.number_two));
+        words.add(new Word(R.drawable.number_three, "tolookosu", "three", R.raw.number_three));
+        words.add(new Word(R.drawable.number_four, "oyyisa", "four", R.raw.number_four));
+        words.add(new Word(R.drawable.number_five, "massokka", "five", R.raw.number_five));
+        words.add(new Word(R.drawable.number_six, "temmokka", "six", R.raw.number_six));
+        words.add(new Word(R.drawable.number_seven, "kenekaku", "seven", R.raw.number_seven));
+        words.add(new Word(R.drawable.number_eight, "kawinta", "eight", R.raw.number_eight));
+        words.add(new Word(R.drawable.number_nine, "wo'e", "nine", R.raw.number_nine));
+        words.add(new Word(R.drawable.number_ten, "na'aacha", "ten", R.raw.number_ten));
 
 
 
@@ -58,7 +63,7 @@ public class NumbersActivity extends AppCompatActivity {
 
         // Find the {@link ListView} object in the view hierarchy of the {@link Activity}.
         // There should be a {@link ListView} with the view ID called list, which is declared in the
-        // word_listyout file.
+        // word_list layout file.
         ListView listView = (ListView) findViewById(R.id.list);
 
         // Make the {@link ListView} use the {@link ArrayAdapter} we created above, so that the
@@ -66,6 +71,16 @@ public class NumbersActivity extends AppCompatActivity {
         // Do this by calling the setAdapter method on the {@link ListView} object and pass in
         // 1 argument, which is the {@link ArrayAdapter} with the variable name itemsAdapter.
         listView.setAdapter(itemsAdapter);
+
+        // plays the corresponding audio file when a list item in ListView is clicked
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Word currentWord = words.get(position);
+                mMediaPlayer = MediaPlayer.create(NumbersActivity.this, currentWord.getAudioResourceId());
+                mMediaPlayer.start();
+            }
+        });
 
 
 

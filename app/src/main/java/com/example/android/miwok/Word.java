@@ -19,6 +19,9 @@ public class Word {
     // integer value containing the image ID
     private int mImageResourceId = NO_IMAGE_PROVIDED;
 
+    // integer value containing the audio ID
+    private int mAudioResourceId;
+
 //    // integer for keeping track which constructor was used
 //    // 0 stands for two-String input constructor
 //    // 1 stands for two-String, one int input constructor (layout with image)
@@ -35,10 +38,12 @@ public class Word {
      * Takes only two inputs, used for PhraseActivity.
      * @param miwokTranslation the word in Miwok language
      * @param defaultTranslation the word in English
+     * @param audioResourceId raw resource ID of audio associated with the word/phrase
      */
-    public Word(String miwokTranslation, String defaultTranslation) {
+    public Word(String miwokTranslation, String defaultTranslation, int audioResourceId) {
         mMiwokTranslation = miwokTranslation;
         mDefaultTranslation = defaultTranslation;
+        mAudioResourceId = audioResourceId;
 
 //        mConstructorType = 0;
     }
@@ -49,11 +54,13 @@ public class Word {
      * @param imageResourceId drawable resource ID of the image associated with the word
      * @param miwokTranslation the word in Miwok language
      * @param defaultTranslation the word in English
+     * @param audioResourceId raw resource ID of audio associated with the word/phrase
      */
-    public Word(int imageResourceId, String miwokTranslation, String defaultTranslation) {
+    public Word(int imageResourceId, String miwokTranslation, String defaultTranslation, int audioResourceId) {
         mImageResourceId = imageResourceId;
         mMiwokTranslation = miwokTranslation;
         mDefaultTranslation = defaultTranslation;
+        mAudioResourceId = audioResourceId;
 //        mConstructorType = 1;
     }
 
@@ -108,4 +115,13 @@ public class Word {
     public boolean hasImage(){
         return mImageResourceId != NO_IMAGE_PROVIDED;
     }
+
+    /**
+     * Gets the audio resource ID
+     * @return current mAudioResourceId
+     */
+    public int getAudioResourceId(){
+        return mAudioResourceId;
+    }
+
 }
