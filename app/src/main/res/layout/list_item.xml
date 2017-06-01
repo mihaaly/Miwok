@@ -4,10 +4,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/list_item_height"
     android:background="@color/tan_background"
-    android:minHeight="@dimen/list_item_height"
-    android:orientation="vertical">
+    android:minHeight="@dimen/list_item_height">
 
     <!--Shows a picture.-->
     <ImageView
@@ -62,8 +61,8 @@
             android:src="@drawable/ic_play_arrow" />
     </RelativeLayout>
 
-
-
-
-
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="?android:attr/selectableItemBackground"/>-->
 </RelativeLayout>
