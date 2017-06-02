@@ -17,7 +17,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NumbersFragment extends Fragment {
+public class ColorsFragment extends Fragment {
 
     /** Handles playback of all the sound files */
     private MediaPlayer mMediaPlayer;
@@ -68,7 +68,7 @@ public class NumbersFragment extends Fragment {
                 }
             };
 
-    public NumbersFragment() {
+    public ColorsFragment() {
         // Required empty public constructor
     }
 
@@ -80,22 +80,23 @@ public class NumbersFragment extends Fragment {
 
         /** TODO: Insert all the code from the NumberActivity’s onCreate() method after the
          * setContentView method call */
+
         // Create and setup the {@link AudioManager} to request audio focus
         mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
 
         // ArrayList of Word.java objects
         final ArrayList<Word> words = new ArrayList<Word>();
         // Add Word objects to the ArrayList
-        words.add(new Word(R.drawable.number_one, "lutti", "one", R.raw.number_one));
-        words.add(new Word(R.drawable.number_two, "otiiko", "two", R.raw.number_two));
-        words.add(new Word(R.drawable.number_three, "tolookosu", "three", R.raw.number_three));
-        words.add(new Word(R.drawable.number_four, "oyyisa", "four", R.raw.number_four));
-        words.add(new Word(R.drawable.number_five, "massokka", "five", R.raw.number_five));
-        words.add(new Word(R.drawable.number_six, "temmokka", "six", R.raw.number_six));
-        words.add(new Word(R.drawable.number_seven, "kenekaku", "seven", R.raw.number_seven));
-        words.add(new Word(R.drawable.number_eight, "kawinta", "eight", R.raw.number_eight));
-        words.add(new Word(R.drawable.number_nine, "wo'e", "nine", R.raw.number_nine));
-        words.add(new Word(R.drawable.number_ten, "na'aacha", "ten", R.raw.number_ten));
+        words.add(new Word(R.drawable.color_red, "wetetti", "red", R.raw.color_red));
+        words.add(new Word(R.drawable.color_green, "chokokki", "green", R.raw.color_green));
+        words.add(new Word(R.drawable.color_brown, "takaakki", "brown", R.raw.color_brown));
+        words.add(new Word(R.drawable.color_gray, "topoppi", "gray", R.raw.color_gray));
+        words.add(new Word(R.drawable.color_black, "kululli", "black", R.raw.color_black));
+        words.add(new Word (R.drawable.color_white, "kelelli", "white", R.raw.color_white));
+        words.add(new Word(R.drawable.color_dusty_yellow, "topissə", "dusty yellow",
+                R.raw.color_dusty_yellow));
+        words.add(new Word(R.drawable.color_mustard_yellow, "chiwittə", "mustard yellow",
+                R.raw.color_mustard_yellow));
 
         // Create an {@link ArrayAdapter}, whose data source is a list of Strings. The
         // adapter knows how to create layouts for each item in the list, using the
@@ -103,11 +104,11 @@ public class NumbersFragment extends Fragment {
         // This list item layout contains a single {@link TextView}, which the adapter will set to
         // display a single word.
         // ArrayAdapter<Word> itemsAdapter = new ArrayAdapter<Word>(this, R.layout.list_item, words);
-        WordAdapter itemsAdapter = new WordAdapter(getActivity(), words, R.color.category_numbers);
+        WordAdapter itemsAdapter = new WordAdapter(getActivity(), words, R.color.category_colors);
 
         // Find the {@link ListView} object in the view hierarchy of the {@link Activity}.
         // There should be a {@link ListView} with the view ID called list, which is declared in the
-        // word_list layout file.
+        // word_list you file.
         ListView listView = (ListView) rootView.findViewById(R.id.list);
 
         // Make the {@link ListView} use the {@link ArrayAdapter} we created above, so that the

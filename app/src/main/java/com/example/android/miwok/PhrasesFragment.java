@@ -17,7 +17,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NumbersFragment extends Fragment {
+public class PhrasesFragment extends Fragment {
 
     /** Handles playback of all the sound files */
     private MediaPlayer mMediaPlayer;
@@ -68,7 +68,7 @@ public class NumbersFragment extends Fragment {
                 }
             };
 
-    public NumbersFragment() {
+    public PhrasesFragment() {
         // Required empty public constructor
     }
 
@@ -86,16 +86,18 @@ public class NumbersFragment extends Fragment {
         // ArrayList of Word.java objects
         final ArrayList<Word> words = new ArrayList<Word>();
         // Add Word objects to the ArrayList
-        words.add(new Word(R.drawable.number_one, "lutti", "one", R.raw.number_one));
-        words.add(new Word(R.drawable.number_two, "otiiko", "two", R.raw.number_two));
-        words.add(new Word(R.drawable.number_three, "tolookosu", "three", R.raw.number_three));
-        words.add(new Word(R.drawable.number_four, "oyyisa", "four", R.raw.number_four));
-        words.add(new Word(R.drawable.number_five, "massokka", "five", R.raw.number_five));
-        words.add(new Word(R.drawable.number_six, "temmokka", "six", R.raw.number_six));
-        words.add(new Word(R.drawable.number_seven, "kenekaku", "seven", R.raw.number_seven));
-        words.add(new Word(R.drawable.number_eight, "kawinta", "eight", R.raw.number_eight));
-        words.add(new Word(R.drawable.number_nine, "wo'e", "nine", R.raw.number_nine));
-        words.add(new Word(R.drawable.number_ten, "na'aacha", "ten", R.raw.number_ten));
+        words.add(new Word("mintu wuksus", "Where are you going?",
+                R.raw.phrase_where_are_you_going));
+        words.add(new Word("tinnə oyaase'nə", "What is your name?",
+                R.raw.phrase_what_is_your_name));
+        words.add(new Word("oyaaset...", "My name is...", R.raw.phrase_my_name_is));
+        words.add(new Word("michəksəs?", "How are you feeling?", R.raw.phrase_how_are_you_feeling));
+        words.add(new Word("kuchi achit", "I'm feeling good.", R.raw.phrase_im_feeling_good));
+        words.add(new Word ("əənəs'aa?", "Are you coming?", R.raw.phrase_are_you_coming));
+        words.add(new Word("həə'əənəm", "Yes, I'm coming.", R.raw.phrase_yes_im_coming));
+        words.add(new Word("əənəm", "I'm coming.", R.raw.phrase_im_coming));
+        words.add(new Word("yoowutis", "Let's go.", R.raw.phrase_lets_go));
+        words.add(new Word("ənni'nem", "Come here.", R.raw.phrase_come_here));
 
         // Create an {@link ArrayAdapter}, whose data source is a list of Strings. The
         // adapter knows how to create layouts for each item in the list, using the
@@ -103,11 +105,11 @@ public class NumbersFragment extends Fragment {
         // This list item layout contains a single {@link TextView}, which the adapter will set to
         // display a single word.
         // ArrayAdapter<Word> itemsAdapter = new ArrayAdapter<Word>(this, R.layout.list_item, words);
-        WordAdapter itemsAdapter = new WordAdapter(getActivity(), words, R.color.category_numbers);
+        WordAdapter itemsAdapter = new WordAdapter(getActivity(), words, R.color.category_phrases);
 
         // Find the {@link ListView} object in the view hierarchy of the {@link Activity}.
         // There should be a {@link ListView} with the view ID called list, which is declared in the
-        // word_list layout file.
+        // word_list your file.
         ListView listView = (ListView) rootView.findViewById(R.id.list);
 
         // Make the {@link ListView} use the {@link ArrayAdapter} we created above, so that the
@@ -125,7 +127,6 @@ public class NumbersFragment extends Fragment {
                 // So if I do not wait for the sound to complete and click on another list item...
                 releaseMediaPlayer();
 
-                // Get the {@link Word} object at the given position the user clicked on
                 Word currentWord = words.get(position);
 
                 // Request audio focus so in order to play the audio file. The app needs to play a
